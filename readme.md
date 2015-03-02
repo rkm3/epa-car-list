@@ -5,7 +5,10 @@ SOURCE: This is a set of data from the EPA based on cars tested for emisisons an
 
 http://www.epa.gov/otaq/tcldata.htm
 
-Below and in the attached SQL files are commands for interacting with the data. 
+Below and in the attached SQL files are commands for interacting with the data.
+
+![Sample query with this data](example_query.png)
+
 # Getting setup
 
 ## Creating and granting db access
