@@ -1,40 +1,34 @@
+Test Car List Data Files from the EPA
+-------------------------------------
 
-This is a set of data from the EPA. http://www.epa.gov/otaq/tcldata.htm
-
+SOURCE: This is a set of data from the EPA based on cars tested for emisisons and fuel economy. 
 
 http://www.epa.gov/otaq/tcldata.htm
 
-Get a list of all makes.
+Below and in the attached SQL files are commands for interacting with the data. 
+# Getting setup
 
-        cat *.csv | cut -f2,3 -d, | sort | uniq | pbcopy
+## Creating and granting db access
 
-See the file [makes.yaml](../makes.yaml) for the output. 
-
-
-Get a list of all the models for those makes
-
-        cat *tstcar.csv | cut -f3,7 -d, | sort | uniq | pbcopy
-
-See the file [makes_and_models.yaml](../makes_and_models.yaml) for the output. 
-
-## Headings 1
-
-2000 - 2009
-
-## Headings 2
-
-2009-2015
-
-
-### Creating and granting db access
+Run these commands before trying to add the data.
 
     $ echo "CREATE DATABASE epa_test_car_data;" | mysql -uroot
     $ echo "CREATE USER '$USER'@'localhost';" | mysql -uroot
     $ echo "GRANT ALL ON epa_test_car_data.* TO '$USER';" | mysql -uroot
 
+## Load this dataset into MySQL.
 
+    $ mysql -u$USER < mysql-tables/epa_test_car_data_2015-03-01.sql
 
-# The early years - fixed width parsing
+## Enjoy!
+
+# Data prep
+
+Most of the CSVs in this dataset were loaded as is. The earlier files are fixed width, which required a little more work. 
+
+For my current project, I only want year, make, and model, so that's all I attempted to parse here. 
+
+## The early years - fixed width parsing
 
 Parsing the fixed widths years for year, make, model. 
 
